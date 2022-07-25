@@ -15,6 +15,10 @@ import java.util.Set;
  */
 public interface DeptApi {
 
+
+
+
+
     /**
      * 获得部门信息
      *
