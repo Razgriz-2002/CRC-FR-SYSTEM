@@ -50,7 +50,7 @@ spring:
 #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
 #          url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=${spring.datasource.dynamic.datasource.master.name} # SQLServer 连接的示例
           username: root
-          password: 123456
+          password: root
 #          username: sa
 #          password: JSm:g(*%lU4ZAkz06cd52KqT3)i1?H7W
         slave: # 模拟从库，可根据自己需要修改
@@ -61,7 +61,7 @@ spring:
 #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
 #          url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=${spring.datasource.dynamic.datasource.slave.name} # SQLServer 连接的示例
           username: root
-          password: 123456
+          password: root
 #          username: sa
 #          password: JSm:g(*%lU4ZAkz06cd52KqT3)i1?H7W
 
@@ -199,6 +199,7 @@ yudao:
     enable: false # 本地环境，暂时关闭图片验证码，方便登录等接口的测试
   security:
     mock-enable: true
+    mock-secret: test # Token 模拟机制的 Token 前缀
   xss:
     enable: false
     exclude-urls: # 如下两个 url，仅仅是为了演示，去掉配置也没关系

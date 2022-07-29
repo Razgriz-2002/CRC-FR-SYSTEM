@@ -40,20 +40,20 @@ public class LoginLogServiceImplTest extends BaseDbUnitTest {
         // 构造测试数据
         // 登录成功的
         LoginLogDO loginLogDO = RandomUtils.randomPojo(LoginLogDO.class, logDO -> {
-            logDO.setLogType(RandomUtil.randomEle(cn.iocoder.yudao.module.system.enums.logger.LoginLogTypeEnum.values()).getType());
+            logDO.setLogType(RandomUtil.randomEle(LoginLogTypeEnum.values()).getType());
             logDO.setTraceId(TracerUtils.getTraceId());
             logDO.setUserType(RandomUtil.randomEle(UserTypeEnum.values()).getValue());
 
             logDO.setUserIp("192.168.199.16");
             logDO.setUsername("wangkai");
             logDO.setCreateTime(buildTime(2021, 3, 6));
-            logDO.setResult(cn.iocoder.yudao.module.system.enums.logger.LoginResultEnum.SUCCESS.getResult());
+            logDO.setResult(LoginResultEnum.SUCCESS.getResult());
         });
         loginLogMapper.insert(loginLogDO);
 
         // 下面几个都是不匹配的数据
         // 登录失败的
-        loginLogMapper.insert(ObjectUtils.cloneIgnoreId(loginLogDO, logDO -> logDO.setResult(cn.iocoder.yudao.module.system.enums.logger.LoginResultEnum.CAPTCHA_CODE_ERROR.getResult())));
+        loginLogMapper.insert(ObjectUtils.cloneIgnoreId(loginLogDO, logDO -> logDO.setResult(LoginResultEnum.CAPTCHA_CODE_ERROR.getResult())));
         // 不同ip段的
         loginLogMapper.insert(ObjectUtils.cloneIgnoreId(loginLogDO, logDO -> logDO.setUserIp("192.168.128.18")));
         // 不同username
@@ -84,20 +84,20 @@ public class LoginLogServiceImplTest extends BaseDbUnitTest {
 
         // 登录成功的
         LoginLogDO loginLogDO = RandomUtils.randomPojo(LoginLogDO.class, logDO -> {
-            logDO.setLogType(RandomUtil.randomEle(cn.iocoder.yudao.module.system.enums.logger.LoginLogTypeEnum.values()).getType());
+            logDO.setLogType(RandomUtil.randomEle(LoginLogTypeEnum.values()).getType());
             logDO.setTraceId(TracerUtils.getTraceId());
             logDO.setUserType(RandomUtil.randomEle(UserTypeEnum.values()).getValue());
 
             logDO.setUserIp("192.168.111.16");
             logDO.setUsername("wangxiaokai");
             logDO.setCreateTime(buildTime(2021, 3, 6));
-            logDO.setResult(cn.iocoder.yudao.module.system.enums.logger.LoginResultEnum.SUCCESS.getResult());
+            logDO.setResult(LoginResultEnum.SUCCESS.getResult());
         });
         loginLogMapper.insert(loginLogDO);
 
         // 下面几个都是不匹配的数据
         // 登录失败的
-        loginLogMapper.insert(ObjectUtils.cloneIgnoreId(loginLogDO, logDO -> logDO.setResult(cn.iocoder.yudao.module.system.enums.logger.LoginResultEnum.CAPTCHA_CODE_ERROR.getResult())));
+        loginLogMapper.insert(ObjectUtils.cloneIgnoreId(loginLogDO, logDO -> logDO.setResult(LoginResultEnum.CAPTCHA_CODE_ERROR.getResult())));
         // 不同ip段的
         loginLogMapper.insert(ObjectUtils.cloneIgnoreId(loginLogDO, logDO -> logDO.setUserIp("192.168.128.18")));
         // 不同username

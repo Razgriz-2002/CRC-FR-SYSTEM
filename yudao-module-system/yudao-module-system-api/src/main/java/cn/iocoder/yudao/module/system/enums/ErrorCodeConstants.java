@@ -142,4 +142,5 @@ public interface ErrorCodeConstants {
     ErrorCode OAUTH2_CODE_NOT_EXISTS = new ErrorCode(1002022000, "code 不存在");
     ErrorCode OAUTH2_CODE_EXPIRE = new ErrorCode(1002022000, "code 已过期");
 
+    ErrorCode GROUP_NOT_EXISTS = new ErrorCode(1002021900, "用户组不存在");
 }
