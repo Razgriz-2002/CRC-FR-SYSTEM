@@ -11,10 +11,10 @@ import lombok.Data;
 @Data
 public class EmailMailboxReqDTO {
 
-    private String mailboxId;
+    private String mailboxId;  //采用哪种mailbox
 
-    private String content;
+    private String content;   //发送的内容是什么
 
-    private String title;
+    private String title;   //发送的标题是什么
 
 }

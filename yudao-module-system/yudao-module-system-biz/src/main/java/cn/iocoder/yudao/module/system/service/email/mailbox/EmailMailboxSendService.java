@@ -20,7 +20,7 @@ public interface EmailMailboxSendService {
      * @param
      * @return
      */
-    public void send(EmailMailboxReqDTO dto);
+    public void send(EmailMailboxReqDTO dto) throws Exception;
 
 
 }

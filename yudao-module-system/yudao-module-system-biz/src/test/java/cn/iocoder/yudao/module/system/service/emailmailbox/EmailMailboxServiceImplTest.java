@@ -43,14 +43,21 @@ public class EmailMailboxServiceImplTest extends BaseDbUnitTest {
     @Test
     public void testCreateEmailMailbox_success() {
         // 准备参数
-        EmailMailboxCreateReqVO reqVO = randomPojo(EmailMailboxCreateReqVO.class);
-
+        EmailMailboxCreateReqVO reqVO = new EmailMailboxCreateReqVO();
+        reqVO.setFromEmail("A2713721325@gmail.com");
+        reqVO.setAuthCode("wpecmmwqaxlmqsje");
+        reqVO.setRemark("测试邮件备注");
+        reqVO.setStatus(1);
+        reqVO.setCode("Test_Email");
+        reqVO.setSignature("测试邮件备注");
         // 调用
         Long emailMailboxId = emailMailboxService.createEmailMailbox(reqVO);
+        System.out.println("邮箱id是:"+emailMailboxId);
         // 断言
         assertNotNull(emailMailboxId);
         // 校验记录的属性是否正确
         EmailMailboxDO emailMailbox = emailMailboxMapper.selectById(emailMailboxId);
+        System.out.println("邮箱属性是:"+emailMailbox);
         assertPojoEquals(reqVO, emailMailbox);
     }
 
