@@ -145,4 +145,6 @@ public interface ErrorCodeConstants {
     ErrorCode GROUP_NOT_EXISTS = new ErrorCode(1002021900, "用户组不存在");
     ErrorCode EMAIL_MAILBOX_NOT_EXISTS = new ErrorCode(1002021900, "Mailbox不存在");
 
+    ErrorCode EMAIL_TEMPLATE_NOT_EXISTS = new ErrorCode(1002021900, "邮件模板不存在");
+
 }
