@@ -1,7 +1,10 @@
 package cn.razgriz.email.core;
 
+import cn.iocoder.yudao.framework.common.exception.ErrorCode;
+import cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil;
 import cn.razgriz.email.core.dto.EmailReqDTO;
 import cn.razgriz.email.core.dto.EmailRespDTO;
+import cn.razgriz.email.core.enums.EmailErrorCodeConstants;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.mail.*;
@@ -109,17 +112,32 @@ public abstract class AbstractEmailPath implements EmailPath{
 
         // 设置邮件的内容体
         message.setContent(emailReqDTO.getContent(), "text/html;charset=UTF-8");
+        // 发送邮件 并且抓取异常 对其进行处理后抛出
         try {
-            // 发送邮件 并且抓取异常 对其进行处理后抛出
             Transport.send(message);
-        }catch (Exception ex){
-
-
-
+        }catch (Exception e){
+            //将异常转换为标准模式后抛出
+            throw ServiceExceptionUtil.exception(parseException(e));
         }
+
 
     }
 
+    /**
+     * 解析邮件发送时返回的异常的函数
+     * 目的是将异常转换成统一形式并返回
+     * @author Razgriz
+     * @param
+     * @return
+     */
+    private ErrorCode parseException(Exception e){
+        String exp = e.toString();
+        int begin = exp.indexOf((int)' ');  //找到第一个空格的位置
+        int end = exp.indexOf((int)' ',begin+1);  //找到第二个空格的位置
+        String errorCode = exp.substring(begin+1,end);  //截取子串
+        //随后根据错误码进行解析 并且返回统一模式的错误码
+        return EmailCodeMapping.apply(errorCode);
+    }
 
 
 

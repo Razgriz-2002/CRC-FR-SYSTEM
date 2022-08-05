@@ -18,4 +18,11 @@ public interface EmailErrorCodeConstants {
 
     ErrorCode EMAIL_AUTH_FAILED = new ErrorCode(2001003100,"用户认证失败！");
 
+    // =========== 邮件服务器相关 20010032xx  ===========
+
+    ErrorCode EMAIL_SERVICE_BUSY = new ErrorCode(2001003200,"邮件服务器繁忙");
+    ErrorCode EMAIL_SERVICE_PROBLEM = new ErrorCode(2001003201,"邮件服务器错误");
+    ErrorCode EMAIL_SERVICE_OVERTIME = new ErrorCode(2001003202,"邮件服务器链接超时");
+
+
 }

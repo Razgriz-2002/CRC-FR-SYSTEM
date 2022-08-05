@@ -1,5 +1,6 @@
 package cn.razgriz.test;
 
+import cn.razgriz.email.core.AbstractEmailPath;
 import cn.razgriz.email.core.EmailPath;
 import cn.razgriz.email.core.dto.EmailReqDTO;
 import cn.razgriz.email.core.impl.google.GmailEmailPath;
@@ -42,7 +43,12 @@ public class GmailSendingTest {
     @Test
     public void mailSendingTest01() throws Exception{
         //初始化默认参数
-        sendMail("2713721325@qq.com","测试邮件","这是一封测试邮件");
+        try{
+            sendMail("2713721325@qq.com","测试邮件","这是一封测试邮件");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @Test
@@ -56,7 +62,11 @@ public class GmailSendingTest {
         dto.setFromEmail("2713721325@qq.com");
         dto.setToEmail("2713721325@qq.com");
         dto.setTitle("测试邮件");
-        emailPath.send(dto);
+        try{
+            emailPath.send(dto);
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 
@@ -68,17 +78,22 @@ public class GmailSendingTest {
      */
 
     @Test
-    public void  mailSendingTest03() throws Exception{
+    public void  mailSendingTest03() throws Exception {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
         EmailPath emailPath = new GmailEmailPath();
         EmailReqDTO dto = new EmailReqDTO();
         dto.setContent("测试邮件"+formatter.format(date));
-        dto.setAuthCode(GmailString);
-        dto.setFromEmail("A2713721325@gmail.com");
+        dto.setAuthCode("wpecmmwqaxlmqsje");
+        dto.setFromEmail("A22713721325@gmail.com");
         dto.setToEmail("2713721325@qq.com");
         dto.setTitle("测试邮件");
-        emailPath.send(dto);
+        try{
+            emailPath.send(dto);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+//        emailPath.send(dto);
     }
     private static boolean sendMail(String to, String text, String title){
         try {
@@ -140,8 +155,4 @@ public class GmailSendingTest {
         }
         return false;
     }
-
-
-
-
 }

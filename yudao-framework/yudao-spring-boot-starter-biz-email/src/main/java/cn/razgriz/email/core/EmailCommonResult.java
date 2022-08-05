@@ -11,7 +11,4 @@ import cn.iocoder.yudao.framework.common.pojo.CommonResult;
  */
 public class EmailCommonResult<T> extends CommonResult<T> {
 
-
-
-
 }
