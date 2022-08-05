@@ -1,4 +1,4 @@
-package cn.iocoder.yudao.module.system.service.emailmailbox;
+package cn.iocoder.yudao.module.system.service.email.mailbox;
 
 import java.util.*;
 import javax.validation.*;

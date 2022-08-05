@@ -1,5 +1,6 @@
-package cn.iocoder.yudao.module.system.service.emailtemplate;
+package cn.iocoder.yudao.module.system.service.email.postman.template;
 
+import cn.iocoder.yudao.module.system.service.email.postman.template.EmailTemplateService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;

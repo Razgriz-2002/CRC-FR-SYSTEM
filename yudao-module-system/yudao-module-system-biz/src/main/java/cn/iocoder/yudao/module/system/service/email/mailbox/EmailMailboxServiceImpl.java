@@ -1,5 +1,6 @@
-package cn.iocoder.yudao.module.system.service.emailmailbox;
+package cn.iocoder.yudao.module.system.service.email.mailbox;
 
+import cn.iocoder.yudao.module.system.service.email.mailbox.EmailMailboxService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;

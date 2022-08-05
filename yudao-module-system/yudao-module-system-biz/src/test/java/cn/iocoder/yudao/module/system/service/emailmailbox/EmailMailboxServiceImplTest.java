@@ -1,5 +1,6 @@
 package cn.iocoder.yudao.module.system.service.emailmailbox;
 
+import cn.iocoder.yudao.module.system.service.email.mailbox.EmailMailboxServiceImpl;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;

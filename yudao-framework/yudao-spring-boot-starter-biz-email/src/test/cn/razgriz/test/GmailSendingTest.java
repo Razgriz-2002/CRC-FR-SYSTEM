@@ -1,3 +1,5 @@
+package cn.razgriz.test;
+
 import cn.razgriz.email.core.EmailPath;
 import cn.razgriz.email.core.dto.EmailReqDTO;
 import cn.razgriz.email.core.impl.google.GmailEmailPath;

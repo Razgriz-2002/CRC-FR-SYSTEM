@@ -1,16 +1,12 @@
-package cn.iocoder.yudao.module.system.service.email.mailbox;
+package cn.iocoder.yudao.module.system.service.email.mailbox.send;
 
 
 import cn.iocoder.yudao.module.system.api.email.dto.EmailMailboxReqDTO;
 import cn.iocoder.yudao.module.system.dal.dataobject.emailmailbox.EmailMailboxDO;
-import cn.iocoder.yudao.module.system.service.emailmailbox.EmailMailboxService;
-import cn.iocoder.yudao.module.system.service.emailmailbox.EmailMailboxServiceImpl;
+import cn.iocoder.yudao.module.system.service.email.mailbox.EmailMailboxService;
 import cn.razgriz.email.core.EmailPath;
 import cn.razgriz.email.core.dto.EmailReqDTO;
-import cn.razgriz.email.core.enums.EmailPathEnum;
-import cn.razgriz.email.core.impl.google.GmailEmailPath;
-import cn.razgriz.email.core.impl.qq.QQEmailPath;
-import io.swagger.models.properties.EmailProperty;
+import cn.razgriz.email.core.factory.EmailPathFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +47,7 @@ public class EmailMailboxSendServiceImpl implements EmailMailboxSendService {
         String authCode = emailMailbox.getAuthCode();  //获得发件人邮箱授权码
         String callBackUrl = emailMailbox.getCallbackUrl();  //获得回调url
         //反射加载类
-        EmailPath emailPath = pathSelect(pathCode);
+        EmailPath emailPath = EmailPathFactory.getEmailPath(pathCode);
         //封装请求参数
         EmailReqDTO reqDTO = new EmailReqDTO();
         reqDTO.setToEmail(dto.getToEmail());
@@ -63,23 +59,5 @@ public class EmailMailboxSendServiceImpl implements EmailMailboxSendService {
         emailPath.send(reqDTO);
     }
 
-    /**
-     * 根据渠道编码通过反射加载EmailPath实现类
-     * 这种方法每次请求都会重新加载并创建一个类 后续可利用池化等方法进行优化
-     * 当业务复杂的时候 可以考虑像芋道创建工厂类 集中进行类加载
-     * 此外由于邮件收发代码比较一致 因此后续可以尝试通过配置方式进行新渠道的增加
-     * @author Razgriz
-     * @param
-     * @return
-     */
 
-    private EmailPath pathSelect(String pathCode) throws Exception {
-        //获取枚举中配置的类路径
-        String classPath = EmailPathEnum.getByCode(pathCode).getClassPath();
-        //根据类路径反射加载类 并且以接口的形式返回
-        Class emailPathClass = Class.forName(classPath);
-        Object obj = emailPathClass.newInstance();  //获取实例
-        //返回Object实例
-        return (EmailPath) obj;
-    }
 }

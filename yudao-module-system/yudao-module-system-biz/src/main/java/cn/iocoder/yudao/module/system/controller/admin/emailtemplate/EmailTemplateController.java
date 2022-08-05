@@ -6,7 +6,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.annotations.*;
 
-import javax.validation.constraints.*;
 import javax.validation.*;
 import javax.servlet.http.*;
 import java.util.*;
@@ -24,7 +23,7 @@ import static cn.iocoder.yudao.framework.operatelog.core.enums.OperateTypeEnum.*
 import cn.iocoder.yudao.module.system.controller.admin.emailtemplate.vo.*;
 import cn.iocoder.yudao.module.system.dal.dataobject.emailtemplate.EmailTemplateDO;
 import cn.iocoder.yudao.module.system.convert.emailtemplate.EmailTemplateConvert;
-import cn.iocoder.yudao.module.system.service.emailtemplate.EmailTemplateService;
+import cn.iocoder.yudao.module.system.service.email.postman.template.EmailTemplateService;
 
 @Api(tags = "管理后台 - 邮件模板")
 @RestController

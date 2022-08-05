@@ -1,6 +1,7 @@
 package cn.razgriz.email.core;
 
 import cn.razgriz.email.core.dto.EmailReqDTO;
+import cn.razgriz.email.core.dto.EmailRespDTO;
 
 /**
  * 邮件的Path接口
@@ -17,6 +18,6 @@ public interface EmailPath {
       * @return
       */
 
-    public void send(EmailReqDTO emailReqDTO) throws Exception;
+    public EmailCommonResult<EmailRespDTO> send(EmailReqDTO emailReqDTO) throws Exception;
 
 }

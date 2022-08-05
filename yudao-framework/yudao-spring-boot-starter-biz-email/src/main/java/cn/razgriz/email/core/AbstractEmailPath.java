@@ -1,6 +1,7 @@
 package cn.razgriz.email.core;
 
 import cn.razgriz.email.core.dto.EmailReqDTO;
+import cn.razgriz.email.core.dto.EmailRespDTO;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.mail.*;
@@ -18,8 +19,16 @@ public abstract class AbstractEmailPath implements EmailPath{
 
     protected final Properties properties = new Properties();
 
+    /**
+     * 发送邮件的函数 返回值是EmailCommonResult 暂时未封装
+     * 之后随着回调函数等接口的编写会逐步完善
+     * @author Razgriz
+     * @param
+     * @return EmailCommonResult
+     */
+
     @Override
-    public void send(EmailReqDTO emailReqDTO) throws Exception {
+    public EmailCommonResult<EmailRespDTO> send(EmailReqDTO emailReqDTO) throws Exception {
         //发送邮件函数
         //分为以下几个部分
         //1.封装共有Properties属性
@@ -30,6 +39,8 @@ public abstract class AbstractEmailPath implements EmailPath{
         doSetProperties(emailReqDTO);
         sendEmail(emailReqDTO);
         log.info("[system]:发送邮件完毕");
+        //TODO:完善返回值
+        return null;
     }
 
     /**
@@ -98,9 +109,15 @@ public abstract class AbstractEmailPath implements EmailPath{
 
         // 设置邮件的内容体
         message.setContent(emailReqDTO.getContent(), "text/html;charset=UTF-8");
+        try {
+            // 发送邮件 并且抓取异常 对其进行处理后抛出
+            Transport.send(message);
+        }catch (Exception ex){
 
-        // 发送邮件
-        Transport.send(message);
+
+
+        }
+
     }
 
 

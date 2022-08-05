@@ -1,4 +1,4 @@
-package cn.iocoder.yudao.module.system.service.email.mailbox;
+package cn.iocoder.yudao.module.system.service.email.mailbox.send;
 
 
 import cn.iocoder.yudao.module.system.api.email.dto.EmailMailboxReqDTO;

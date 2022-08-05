@@ -3,13 +3,12 @@ package cn.iocoder.yudao.module.system.service.email.postman;
 import cn.iocoder.yudao.module.system.api.email.dto.EmailMailboxReqDTO;
 import cn.iocoder.yudao.module.system.api.email.dto.EmailPostmanReqDTO;
 import cn.iocoder.yudao.module.system.dal.dataobject.emailtemplate.EmailTemplateDO;
-import cn.iocoder.yudao.module.system.service.email.mailbox.EmailMailboxSendService;
-import cn.iocoder.yudao.module.system.service.emailtemplate.EmailTemplateService;
+import cn.iocoder.yudao.module.system.service.email.mailbox.send.EmailMailboxSendService;
+import cn.iocoder.yudao.module.system.service.email.postman.template.EmailTemplateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 

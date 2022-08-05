@@ -1,5 +1,7 @@
 package cn.iocoder.yudao.module.system.controller.admin.emailmailbox;
 
+import cn.iocoder.yudao.module.system.convert.emailmailbox.EmailMailboxConvert;
+import cn.iocoder.yudao.module.system.service.email.mailbox.EmailMailboxService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -23,8 +25,6 @@ import static cn.iocoder.yudao.framework.operatelog.core.enums.OperateTypeEnum.*
 
 import cn.iocoder.yudao.module.system.controller.admin.emailmailbox.vo.*;
 import cn.iocoder.yudao.module.system.dal.dataobject.emailmailbox.EmailMailboxDO;
-import cn.iocoder.yudao.module.system.convert.emailmailbox.EmailMailboxConvert;
-import cn.iocoder.yudao.module.system.service.emailmailbox.EmailMailboxService;
 
 @Api(tags = "管理后台 - Mailbox")
 @RestController

@@ -1,4 +1,4 @@
-package cn.iocoder.yudao.module.system.service.emailtemplate;
+package cn.iocoder.yudao.module.system.service.email.postman.template;
 
 import java.util.*;
 import javax.validation.*;
