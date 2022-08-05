@@ -26,7 +26,7 @@ public class EmailCodeMapping {
             //TODO:更多请求之后再补充
         }
         //返回未知的时候打出来日志 以后再处理
-        log.info("未知的错误码{"+code+"},请登录 https://support.google.com/a/answer/3726730 查看并补充");
+        log.info("[email]:未知的错误码{"+code+"},请登录 https://support.google.com/a/answer/3726730 查看并补充");
         return EmailErrorCodeConstants.EMAIL_UNKNOWN;  //默认返回未知
     }
 

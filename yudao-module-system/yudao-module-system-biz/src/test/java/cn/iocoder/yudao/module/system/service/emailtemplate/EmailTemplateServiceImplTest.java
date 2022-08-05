@@ -37,6 +37,7 @@ public class EmailTemplateServiceImplTest extends BaseDbUnitTest {
     private EmailTemplateMapper emailTemplateMapper;
 
     @Test
+    @Disabled
     public void testCreateEmailTemplate_success() {
         // 准备参数
         EmailTemplateCreateReqVO reqVO = randomPojo(EmailTemplateCreateReqVO.class);

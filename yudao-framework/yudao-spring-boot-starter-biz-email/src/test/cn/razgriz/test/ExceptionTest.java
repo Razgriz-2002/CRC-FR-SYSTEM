@@ -10,6 +10,12 @@ import org.junit.jupiter.api.Test;
  */
 public class ExceptionTest {
 
+    /**
+     * 错误码抛出异常测试
+     * @author Razgriz
+     * @param
+     * @return
+     */
     @Test
     public void exceptionTest01(){
         try{

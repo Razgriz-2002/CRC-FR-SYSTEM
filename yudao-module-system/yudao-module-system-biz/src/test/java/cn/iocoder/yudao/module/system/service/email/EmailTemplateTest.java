@@ -12,6 +12,7 @@ import cn.iocoder.yudao.module.system.service.email.postman.EmailPostman;
 import cn.iocoder.yudao.module.system.service.email.postman.EmailPostmanImpl;
 import cn.iocoder.yudao.module.system.service.email.postman.template.EmailTemplateService;
 import cn.iocoder.yudao.module.system.service.email.postman.template.EmailTemplateServiceImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
@@ -26,6 +27,12 @@ import java.util.Map;
  */
 @Import({EmailTemplateServiceImpl.class, EmailMailboxServiceImpl.class, EmailPostmanImpl.class,EmailMailboxSendServiceImpl.class})
 public class EmailTemplateTest extends BaseDbUnitTest {
+
+    private static final String TO_EMAIL = "yourTestEmail@gmail.com";  //收件人邮箱
+
+    private static final String FROM_EMAIL = "test@gmail.com";  //发件人邮箱
+
+    private static final String AUTH_CODE = "yourAuthCode";  //发件人授权码
 
     @Autowired
     EmailTemplateService templateService;
@@ -43,6 +50,7 @@ public class EmailTemplateTest extends BaseDbUnitTest {
      * @return
      */
     @Test
+    @Disabled //TODO:请将用户名和授权码修改后再运行该方法
     public void emailTemplateTest01() throws Exception {
         EmailTemplateCreateReqVO reqVO = new EmailTemplateCreateReqVO();
         reqVO.setApiTemplateId("aaa");
@@ -66,14 +74,25 @@ public class EmailTemplateTest extends BaseDbUnitTest {
         System.out.println(emailTemplate2);
     }
 
+    /**
+     * 完整业务测试
+     * 即Postman传入模板号以及参数
+     * 从模板信息中匹配对应数据
+     * 从数据库查找对应渠道
+     * 经过EmailPath发送邮件信息
+     * @author Razgriz
+     * @param
+     * @return
+     */
     @Test
+    @Disabled //TODO:请将用户名和授权码修改后再运行该方法
     public void emailTemplateTest02() throws Exception{
         //首先添加两张表内容
         Long id = insertTemplateData(insertMailboxData());
         System.out.println(id);
         //之后根据id查询组装发邮件
         EmailPostmanReqDTO reqDTO = new EmailPostmanReqDTO();
-        reqDTO.setToEmail("2713721325@qq.com");
+        reqDTO.setToEmail(TO_EMAIL);
         reqDTO.setTitle("测试邮件");
         reqDTO.setTemplateId(id);
         Map<String,Object> map = new HashMap<>();
@@ -89,8 +108,8 @@ public class EmailTemplateTest extends BaseDbUnitTest {
 
     private Long insertMailboxData() throws Exception {
         EmailMailboxCreateReqVO reqVO = new EmailMailboxCreateReqVO();
-        reqVO.setFromEmail("A2713721325@gmail.com");
-        reqVO.setAuthCode("wpecmmwqaxlmqsje");
+        reqVO.setFromEmail(FROM_EMAIL);
+        reqVO.setAuthCode(AUTH_CODE);
         reqVO.setRemark("测试邮件备注");
         reqVO.setStatus(1);
         reqVO.setCode("GMAIL");

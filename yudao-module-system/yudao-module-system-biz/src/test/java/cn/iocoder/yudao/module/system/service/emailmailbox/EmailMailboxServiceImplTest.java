@@ -42,11 +42,12 @@ public class EmailMailboxServiceImplTest extends BaseDbUnitTest {
     private EmailMailboxMapper emailMailboxMapper;
 
     @Test
+    @Disabled
     public void testCreateEmailMailbox_success() {
         // 准备参数
         EmailMailboxCreateReqVO reqVO = new EmailMailboxCreateReqVO();
-        reqVO.setFromEmail("A2713721325@gmail.com");
-        reqVO.setAuthCode("wpecmmwqaxlmqsje");
+        reqVO.setFromEmail("test@gmail.com");
+        reqVO.setAuthCode("yourAuthCode");
         reqVO.setRemark("测试邮件备注");
         reqVO.setStatus(1);
         reqVO.setCode("Test_Email");

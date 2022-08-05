@@ -5,6 +5,8 @@ import cn.razgriz.email.core.EmailPath;
 import cn.razgriz.email.core.dto.EmailReqDTO;
 import cn.razgriz.email.core.impl.google.GmailEmailPath;
 import cn.razgriz.email.core.impl.qq.QQEmailPath;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,37 +32,47 @@ import java.util.Properties;
 public class GmailSendingTest {
 
 
-    private static final String USER = "2713721325@qq.com"; // 发件人称号，同邮箱地址
-    private static final String PASSWORD = "vebapglekjvgdcgg"; // 客户端授权码
+    private static final String USER = "test@gmail.com"; // 发件人称号，同邮箱地址
+    private static final String PASSWORD = "yourAuthCode"; // 客户端授权码
 
-    private static final String GmailString = "wpecmmwqaxlmqsje";  //google gmail授权码
+    private static final String TOEMAIL = "yourTestEmail@gmail.com";  //收件人的地址
+
     /**
      *  邮件收发测试类1
+     *  这里对收发邮件的代码正确性进行测试 采用gmail邮箱
       * @author Razgriz
       * @param
       * @return
       */
     @Test
+    @Disabled  //TODO:请将用户名和授权码修改后再运行该方法
     public void mailSendingTest01() throws Exception{
         //初始化默认参数
         try{
-            sendMail("2713721325@qq.com","测试邮件","这是一封测试邮件");
+            sendMail(TOEMAIL,"测试邮件","这是一封测试邮件");
         }catch (Exception e){
             System.out.println(e);
         }
 
     }
 
+   /**
+    * 用于测试QQ邮箱的发送情况
+    * @author Razgriz
+    * @param
+    * @return
+    */
     @Test
+    @Disabled  //TODO:请将用户名和授权码修改后再运行该方法
     public void mailSendingTest02()throws Exception{
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
         EmailPath emailPath = new QQEmailPath();
         EmailReqDTO dto = new EmailReqDTO();
         dto.setContent("测试邮件"+formatter.format(date));
-        dto.setAuthCode("vebapglekjvgdcgg");
-        dto.setFromEmail("2713721325@qq.com");
-        dto.setToEmail("2713721325@qq.com");
+        dto.setAuthCode(PASSWORD);
+        dto.setFromEmail(USER);
+        dto.setToEmail(TOEMAIL);
         dto.setTitle("测试邮件");
         try{
             emailPath.send(dto);
@@ -76,25 +88,31 @@ public class GmailSendingTest {
      * @param
      * @return
      */
-
     @Test
+    @Disabled  //TODO:请将用户名和授权码修改后再运行该方法
     public void  mailSendingTest03() throws Exception {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
         EmailPath emailPath = new GmailEmailPath();
         EmailReqDTO dto = new EmailReqDTO();
         dto.setContent("测试邮件"+formatter.format(date));
-        dto.setAuthCode("wpecmmwqaxlmqsje");
-        dto.setFromEmail("A22713721325@gmail.com");
-        dto.setToEmail("2713721325@qq.com");
+        dto.setAuthCode(PASSWORD);
+        dto.setFromEmail(USER);
+        dto.setToEmail(TOEMAIL);
         dto.setTitle("测试邮件");
         try{
             emailPath.send(dto);
         }catch (Exception e){
             System.out.println(e);
         }
-//        emailPath.send(dto);
     }
+
+    /**
+     * 最原始的发送邮件代码 用于测试
+     * @author Razgriz
+     * @param
+     * @return
+     */
     private static boolean sendMail(String to, String text, String title){
         try {
             //申请java security权限
